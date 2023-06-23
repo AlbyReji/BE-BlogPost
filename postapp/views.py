@@ -50,7 +50,7 @@ def login(request):
         user = authenticate(username = username ,password = password)
         auth_login(request,user)
 
-        return redirect('home')
+        return redirect('post_list_user')
 
     context = {
         'form' : form
