@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Post{% endblock %}
+
+{% block content %}
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Posts</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        {% if user.is_authenticated %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}">Create Post <span class="sr-only">(current)</span></a>
+        </li>
+        {% endif%}
+        <li class="nav-item">
+          <a class="nav-link" href="#">Logot</a>
+        </li>
+  
+  </nav><br>
+   <center>  <h1>Post List</h1></center>
+  <div class="card-deck">
+    {% for st in Postdb %}
+    <div class="card">
+      <img src="{{ st.image.url }}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{ st.title }}</h5>
+        <p class="card-text">{{ st.description }}</p>
+        <p class="card-text"><small class="text-muted">{{ st.created_date }}</small></p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  
+  <!-- <h1>Student's List</h1>
+  <ul>
+    {% for st in Postdb %}
+    <li>
+      {{ st.title }}<br>
+      {{ st.description }}
+      {{ st.created_date }}
+      <img src="{{ st.image.url }}" width="200">
+    </li>
+    {% endfor %}
+  </ul> -->
+  
+
+  
+  <!-- <h1>Student's List</h1>
+  <ul>
+
+    {% for st in Postdb %}
+      
+     <li>{{st.title}}<br>
+     {{st.description}}
+     {{st.created_date}}
+     <img src="{{ st.image.url }}" width="200">
+    </li>
+
+    {% endfor %}
+  </ul> -->
+{% endblock %}
