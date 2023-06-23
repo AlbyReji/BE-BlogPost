@@ -1,3 +1,6 @@
+
+
+
 {% extends 'base.html' %}
 
 {% block title %}Post{% endblock %}
@@ -13,13 +16,12 @@
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
+        {% if user.is_authenticated %}
         <li class="nav-item active">
-          <a class="nav-link" href="{% url 'login' %}">Login <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="{% url 'home' %}">Create Post <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="{% url 'register' %}">Register <span class="sr-only">(current)</span></a>
-          </li>
-  
+        {% endif%}
+        
   </nav><br>
    <center>  <h1>Post List</h1></center>
   <div class="card-deck">

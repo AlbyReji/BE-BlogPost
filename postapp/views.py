@@ -25,7 +25,7 @@ def home(request):
         form = PostForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('post_list')
+            return redirect('post_list_user')
 
     context  = {"form":form}
 
@@ -36,6 +36,10 @@ class post_list(ListView):
     queryset = Postdb.objects.all()
     context_object_name = 'Postdb'
 
+class post_list_user(ListView):
+    template_name = 'post_temp/user.html'
+    queryset = Postdb.objects.all()
+    context_object_name = 'Postdb'
 
 
 def login(request):
@@ -73,3 +77,9 @@ def register(request):
     }
 
     return render(request,'post_temp/register.html',context)
+
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
