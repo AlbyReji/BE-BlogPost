@@ -20,15 +20,22 @@ def base(request):
 
 @login_required
 def home(request):
-    form = PostForm()
+    user = request.user
+    # form = PostForm()
+
+
     if request.method == 'POST':
         form = PostForm(request.POST,request.FILES)
         if form.is_valid():
-            form.save()
+            date =form.save(commit = False)
+            data.user = username
+            date.save()
             return redirect('post_list_user')
 
-    context  = {"form":form}
+    else:
+        form = PostForm()
 
+    context  = {"form":form}
     return render(request,'post_temp/home.html',context)
 
 class post_list(ListView):
@@ -81,5 +88,6 @@ def register(request):
 
 
 def logout_view(request):
-    logout(request)
-    return redirect('/')
+    if request.method == 'POST':
+        auth.logout(request)
+    return redirect('login')
